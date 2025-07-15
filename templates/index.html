@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Medicinal Plants</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="upload-box {% if prediction %}uploaded{% endif %}">
+      {% if prediction and confidence >= 60 %}
+        <img src="{{ img_path }}" alt="Uploaded Image" class="uploaded-image" />
+      {% endif %}
+
+      <form action="/" method="post" enctype="multipart/form-data">
+        <label for="file-upload" class="upload-label">
+          <img src="{{ url_for('static', filename='img/leaf-icon.png') }}" alt="Upload Icon" class="icon" />
+          <p>Drag or Paste</p>
+        </label>
+        <input type="file" id="file-upload" name="file" onchange="this.form.submit()" />
+      </form>
+    </div>
+
+    {% if prediction %}
+    <div class="result-text">
+      <h3 class="{% if confidence < 60 %}low-confidence{% endif %}">{{ prediction }} ({{ confidence | round(2) }}%)</h3>
+    </div>
+  
+    {% if description %}
+    <div style="position: absolute; top: 30px; left: 750px; max-width: 330px; color: #000; line-height: 1.6;">
+      <div style="margin-bottom: 25px; text-align: center;">
+        <h2 style="font-size: 75px; font-weight: 700; margin: 0 0 8px 0; font-family: 'Megarin', sans-serif;">Manfaat</h2>
+        <p style="font-size: 14px; margin: 0; text-align: left">
+          {{ description.manfaat }}
+        </p>
+      </div>
+    
+      <div>
+        <h2 style="font-size: 48px; font-weight: 700; margin: 0 0 8px 0; text-align: center; font-family: 'Megarin', sans-serif;">Cara Mengolah</h2>
+        <p style="font-size: 14px; margin: 0; text-align: left;">
+          {{ description.cara_olah }}
+        </p>
+
+        <p style="font-size: 12px; font-style: italic; text-align: left; margin: 50px 0 0;">
+          Sumber: {{ description.sumber }}
+
+      </div>
+    </div>
+    {% endif %}
+    
+  {% endif %}
+  
+
+
+
+    <form action="/" method="get">
+      <button type="submit" class="reset-btn">Reset</button>
+    </form>
+
+    <div class="bottom-left">
+      <h1>Medicinal Plants</h1>
+      <p class="desc">
+        A Plant that contains <br>
+        Substances used for <br>
+        Therapeutic purposes or <br>
+        as Precursors for <br>
+        Pharmaceutical Drugs
+      </p>
+    </div>
+  </div>
+</body>
+</html>
