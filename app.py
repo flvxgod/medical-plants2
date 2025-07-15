@@ -4,9 +4,24 @@ import tensorflow as tf
 from keras.preprocessing import image
 import pickle
 import os
+import gdown
 from tensorflow.keras.applications.efficientnet import preprocess_input
 
 app = Flask(__name__)
+
+# === Tambahan untuk download model dari Google Drive ===
+MODEL_PATH = 'model/model.h5'
+LABEL_PATH = 'model/class_labels.pkl'
+MODEL_FILE_ID = '1bKENSmi5HJZMj9W-PsNJS7boImbCNNAf'  # <- ganti dengan ID file kamu
+LABEL_FILE_ID = '1-Q-qrQfl99rhtnW1AAw7S3SYytmxmRPa'
+
+os.makedirs('model', exist_ok=True)
+
+if not os.path.exists(MODEL_PATH):
+    gdown.download(f'https://drive.google.com/uc?id={MODEL_FILE_ID}', MODEL_PATH, quiet=False)
+
+if not os.path.exists(LABEL_PATH):
+    gdown.download(f'https://drive.google.com/uc?id={LABEL_FILE_ID}', LABEL_PATH, quiet=False)
 
 # Load model
 model = tf.keras.models.load_model('model/model.h5')
