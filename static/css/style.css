@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url('../img/bg.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 1170px;
+  height: 765px;
+  background-color: #617559;
+  border: 2px solid black;
+  margin: 129px auto 0 auto; /* Center horizontally, push down vertically */
+  position: relative;
+}
+
+.upload-box {
+  position: absolute;
+  top: 190px; /* sebelumnya 70px */
+  left: 110px;
+  width: 313px;
+  height: 313px;
+  border: 4px dotted black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; /* tampilkan DI ATAS ikon */
+}
+
+.upload-box .icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* ikon DI BAWAH gambar */
+}
+
+.result-text {
+  position: absolute;
+  top: 500px; /* sebelumnya 390px */
+  left: 110px;
+  width: 313px;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  z-index: 3;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.bottom-left h1 {
+  font-family: 'Megarin', sans-serif;
+  font-size: 75px;
+  margin: 0;
+}
+
+.bottom-left .desc {
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.upload-box.uploaded {
+  border: none;
+}
+
+.upload-box.uploaded .icon {
+  display: none;
+}
+
+.reset-btn {
+  position: absolute;
+  top: 590px;
+  left: 110px;
+  width: 313px;
+  text-align: center;
+  margin-top: 10px;
+  padding: 6px 16px;
+  background-color: #4a5d3b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.reset-btn:hover {
+  background-color: #3b4c30;
+}
+
+.low-confidence {
+  color: red;
+}
+
+.result-text p {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #000;
+}
+
+.description-box {
+  position: absolute;
+  top: 70px;
+  left: 450px; /* sebelah kanan upload-box (110 + 313 + 20 offset) */
+  width: 350px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  z-index: 3;
+}
+
+.description-box h4 {
+  margin: 10px 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.description-box p {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
