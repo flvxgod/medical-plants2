@@ -9,6 +9,10 @@ from tensorflow.keras.applications.efficientnet import preprocess_input
 
 app = Flask(__name__)
 
+
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 # === Tambahan untuk download model dari Google Drive ===
 MODEL_PATH = 'model/model.h5'
 LABEL_PATH = 'model/class_labels.pkl'
